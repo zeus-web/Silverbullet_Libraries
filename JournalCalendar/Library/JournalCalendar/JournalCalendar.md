@@ -120,6 +120,10 @@ end
   text-align: left;
 }
 
+.calendartable td.mark {
+  background-color: var(--ui-accent-color);
+}
+
 .calendartable a {
   text-decoration-line: none;
   color: var(--root-color);
