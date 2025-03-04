@@ -8,6 +8,6 @@ A kind of "Widget" to display a calendar for your Journal entries.
 Install using the Settings for above PLUG:
 ```
 externalLibraries:
-- "gh://zeus-web/Silverbullet_Libraries/Library/JournalCalendar"
+- "gh://zeus-web/Silverbullet_Libraries/JournalCalendar/Library/JournalCalendar"
 ```
 
