@@ -98,37 +98,39 @@ end
 
 ```space-style
 .calendartable {
-  /* color: blue; */
   border-collapse: collapse; 
   width: 400px;
 }
 
+.calendartable table {
+  border-color: var(--panel-border-color);
+}
+
 .calendartable th {
   width: 10%;
-  border: 1px solid black;
   padding: 3px; 
   text-align: left;  
-  background-color: lightgray;
+  background-color: var(--panel-background-color);
 }
+
 
 .calendartable td {
   width: 10%;
-  border: 1px solid gray; 
   padding: 3px; 
-  text-align: left;  
+  text-align: left;
 }
 
 .calendartable td.mark {
-  background-color: orange;
+  background-color: var(--ui-accent-color);
 }
 
 .calendartable a {
- text-decoration-line: none;
- color: black;
+  text-decoration-line: none;
+  color: var(--root-color);
 }
 
 .calendartable a.mark {
- text-decoration-line: none;
- color: blue;
+  text-decoration-line: none;
+  color: var(--ui-accent-text-color);
 }
 ```
