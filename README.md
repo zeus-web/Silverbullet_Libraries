@@ -10,4 +10,6 @@ Install using the Settings for above PLUG:
 externalLibraries:
 - "gh://zeus-web/Silverbullet_Libraries/JournalCalendar/Library/JournalCalendar"
 ```
+See the Page file itself for some more details about usage and config options:
+https://github.com/zeus-web/Silverbullet_Libraries/blob/main/JournalCalendar/Library/JournalCalendar/JournalCalendar.md
 
