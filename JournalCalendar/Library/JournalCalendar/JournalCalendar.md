@@ -64,7 +64,7 @@ function generate_calendar(year, month)
               
               -- mark today
               if day == tonumber(os.date("%d")) and month == tonumber(os.date("%m"))  and year == tonumber(os.date("%Y")) then
-                html = html .. "<td class=\"mark\">(" .. cellcontent .. ")</td>"
+                html = html .. "<td class=\"today\">(" .. cellcontent .. ")</td>"
               else
                 html = html .. "<td>" .. cellcontent .. "</td>"
               end
@@ -120,7 +120,7 @@ end
   text-align: left;
 }
 
-.calendartable td.mark {
+.calendartable td.today {
   background-color: var(--ui-accent-color);
 }
 
