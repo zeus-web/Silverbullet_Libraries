@@ -31,23 +31,35 @@ JournalCalendar:
   day_names: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
   week_start_on_monday: true
   journal_path_pattern: "Journal/%year%-%month%-%day%_%weekday%"
-      
 ```
 
 # Script 
 
 ```space-lua
-
--- Configuration: Customize these settings
-local JC_config = system.getSpaceConfig("JournalCalendar")
-
+-- Configuration: Customize these settings or use a space-config with section JournalCalendar
 local week_start_on_monday = true -- Set to false for Sunday start
 local journal_path_pattern = "Journal/%year%/%month%/%year%-%month%-%day%_%weekday%"
-local month_names = JC_config.month_names or {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
-local day_names = JC_config.day_names or {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"} -- Used when the week starts on Monday
+local month_names =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
+local day_names = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"} -- Used when the week starts on Monday
 
-if (JC_config.week_start_on_monday != null) then
-  week_start_on_monday = JC_config.week_start_on_monday
+-- overwrite settings, if there is a configuration in space-config
+local JC_config = system.getSpaceConfig("JournalCalendar")
+if (JC_config) then
+  if (JC_config.journal_path_pattern != null) then
+    journal_path_pattern = JC_config.journal_path_pattern
+  end
+
+  if (JC_config.month_names != null) then
+    month_names = JC_config.month_names
+  end
+  
+  if (JC_config.day_names != null) then
+    day_names = JC_config.day_names
+  end
+  
+  if (JC_config.week_start_on_monday != null) then
+    week_start_on_monday = JC_config.week_start_on_monday
+  end
 end
   
 
