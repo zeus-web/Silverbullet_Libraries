@@ -1,7 +1,7 @@
 ---
 tags: meta
 description: Displays a Calendar for Journal Files
-version: 0.5.0
+version: 0.6.0
 date: 2025-03-05
 ---
 
@@ -11,8 +11,16 @@ You can set the year and month as parameter (e.g. `(2025,3)`)
 Leave the parameters empty for current month/year.
 `${generate_calendar(2025,3)}`
 
+You are able to place additional markers, too. Just add a third parameter with a LUA table with "x" plus the day's number and a text to display like that:
+
+Example with day nr. 10 is marked "Holiday", day nr. 19 is marked with "Blocked"
+
+`{x10="Holiday", x19="Blocked"}`
+
+_(Hint: you can define how it looks like by changing the CSS Style ".calendartable span.extramarker")_
+
 ## Example:
-${generate_calendar(2025,3)}
+${generate_calendar(2025,3,{x10="Abc", x19="XYZ"} )}
 
 # Settings
 For changing the month and day names and other configs, you can place a `space-config` section somewhere in your space. 
@@ -63,7 +71,7 @@ if (JC_config) then
 end
   
 
-function generate_calendar(year, month)
+function generate_calendar(year, month, markers)
     -- Use current date if no parameters are provided
     if year == nil or month == nil then
         year = tonumber(os.date("%Y"))
@@ -110,7 +118,11 @@ function generate_calendar(year, month)
                 if space.fileExists(journalfilename .. ".md") then
                     cellcontent = "<b><a href=\"" .. journalfilename .. "\" class=\"mark\" data-ref=\"" .. journalfilename .. "\">" .. day .. "</a></b>"
                 else
+                  if (markers != nil and markers["x" .. day] != nil ) then -- add special dates/markings
+                    cellcontent = "<a href=\"" .. journalfilename .. "\" data-ref=\"" .. journalfilename .. "\">" .. day .. " <span class=\"extramarker\">(" .. markers["x" .. day] .. ")</div></a>"
+                  else
                     cellcontent = "<a href=\"" .. journalfilename .. "\" data-ref=\"" .. journalfilename .. "\">" .. day .. "</a>"
+                  end
                 end
 
                 -- Mark today's date
@@ -184,7 +196,7 @@ end
 ```space-style
 .calendartable {
   border-collapse: collapse; 
-  width: 400px;
+  width: 500px;
 }
 
 .calendartable table {
@@ -192,7 +204,7 @@ end
 }
 
 .calendartable th {
-  width: 10%;
+  width: 14%;
   padding: 3px; 
   text-align: left;  
   background-color: var(--panel-background-color);
@@ -200,7 +212,7 @@ end
 
 
 .calendartable td {
-  width: 10%;
+  width: 14%;
   padding: 3px; 
   text-align: left;
 }
@@ -218,4 +230,9 @@ end
   text-decoration-line: none;
   color: var(--ui-accent-text-color);
 }
+
+.calendartable span.extramarker {
+  background-color: yellow;
+}
+
 ```
