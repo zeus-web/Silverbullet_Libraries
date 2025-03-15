@@ -145,7 +145,7 @@ function generate_calendar(year, month, markers)
 
     html = html .. "</table>"
 
-    return {
+    return widget.new{
         html = html,
         display = "block",
         cssClasses = {"calendartable"}
