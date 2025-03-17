@@ -38,7 +38,7 @@ JournalCalendar:
   month_names: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
   day_names: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
   week_start_on_monday: true
-  journal_path_pattern: "Journal/%year%-%month%-%day%_%weekday%"
+  journal_path_pattern: "Journal/#year#-#month#-#day#_#weekday#"
 ```
 
 # Script 
@@ -46,7 +46,7 @@ JournalCalendar:
 ```space-lua
 -- Configuration: Customize these settings or use a space-config with section JournalCalendar
 local week_start_on_monday = true -- Set to false for Sunday start
-local journal_path_pattern = "Journal/%year%/%month%/%year%-%month%-%day%_%weekday%"
+local journal_path_pattern = "Journal/#year#/#month#/#year#-#month#-#day#_#weekday#"
 local month_names =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
 local day_names = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"} -- Used when the week starts on Monday
 
@@ -156,10 +156,10 @@ end
 local function generate_journal_path(year, month, day, weekday, pattern)    
     -- Ensure we use leading zero format where necessary
     local replacements = {
-        ["%%year%%"] = tostring(year),
-        ["%%month%%"] = leadingzero(month),
-        ["%%day%%"] = leadingzero(day),
-        ["%%weekday%%"] = day_names[weekday]
+        ["#year#"] = tostring(year),
+        ["#month#"] = leadingzero(month),
+        ["#day#"] = leadingzero(day),
+        ["#weekday#"] = day_names[weekday]
     }
 
     -- Replace placeholders in the pattern
