@@ -184,9 +184,16 @@ local function get_days_in_month(year, month)
     end
     
     return days_in_month[month]
-end    
+end
 
+local TODAY_PAGE = generate_journal_path(tonumber(os.date("%Y")), tonumber(os.date("%m")), tonumber(os.date("%d")), tonumber(os.date("%w")), journal_path_pattern)
 
+command.define {
+  name = "Open Today Journal",
+  run = function()
+    editor.navigate(TODAY_PAGE)
+  end
+}
 ```
 
 # Space Style
