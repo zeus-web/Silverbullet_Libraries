@@ -5,7 +5,8 @@ For a convenient way to install take a look at https://community.silverbullet.md
 
 ## JournalCalendar
 A kind of "Widget" to display a calendar for your Journal entries.
-Install using the Settings for above PLUG:
+Install using the Settings for above PLUG: (**Attention**: currently working on **Sivlerbullet EDGE** only, but see workaround here: https://github.com/zeus-web/Silverbullet_Libraries/issues/4)
+
 ```
 externalLibraries:
 - "gh://zeus-web/Silverbullet_Libraries/JournalCalendar/Library/JournalCalendar"
